@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
+  validates :username, uniqueness: true
   validates_confirmation_of :password, message: "should match confirmation", if: :password
+  validates :first_name, presence: true
 
   has_many :tweets
 
@@ -16,6 +18,10 @@ class User < ApplicationRecord
 
   def unfollow(user_id)
     following_relationships.find_by(following_id: user_id).destroy
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 
 end
