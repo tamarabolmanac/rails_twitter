@@ -40,7 +40,8 @@
             } 
 
  .user {
- 	text-align: right
+ 	float: right;
+  margin-bottom: 50px;
  }
 
  .boxed {
@@ -48,3 +49,13 @@
   padding: 10px;
   margin:10px;
 } 
+
+.tweet_link {
+  background-color: #45a4f7;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+  font-size: 20px;
+}

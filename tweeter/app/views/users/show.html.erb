@@ -29,6 +29,11 @@
 	  <strong>Email:</strong>
 	  <%= @user.email %>
 	</p>
+
+	<p>
+	  <strong>Mentioned:</strong>
+	  <%= @user.mentions %> times
+	</p>
 	
 	
 </div>
@@ -36,7 +41,9 @@
 <% if @user.id == current_user.id then %>
    
 	<div>
+		<div class="tweet_link">
 		<%= link_to 'Tweet', new_tweet_path  %>
+		</div>
 		<hr>
 		<h2>Your tweets</h2>
 		<% @user.tweets.each do |tweet| %>
@@ -53,6 +60,12 @@
 		     <%= link_to 'Unfollow', unfollow_user_path,
 		     method: :post %>
 		</div>
+		<h2>Tweets</h2>
+		<% @user.tweets.each do |tweet| %>
+			<p><strong><%= tweet.title %></strong></p>
+			<%= tweet.text %>
+			<hr>
+		<% end %>
 	<% else %>
 		<div>
 		     <%= link_to 'Follow', follow_user_path,

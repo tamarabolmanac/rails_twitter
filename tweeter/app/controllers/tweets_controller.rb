@@ -27,6 +27,8 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new(tweet_params)
     @tweet.user_id = current_user.id
 
+    mention
+
     respond_to do |format|
       if @tweet.save
         format.html { redirect_to user_path(current_user), notice: 'Tweet was successfully created.' }
@@ -34,6 +36,17 @@ class TweetsController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def mention
+    tags = @tweet.text.split('#')
+    tags.each do |tag|
+      user = User.find_by_username(tag)
+      if user
+        user.mentions += 1
+        user.save
       end
     end
   end
