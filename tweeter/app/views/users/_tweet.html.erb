@@ -1,0 +1,7 @@
+
+	<div class="boxed">
+            <p><strong><%= tweet.user.username %></strong> <%= distance_of_time_in_words(tweet.created_at, Time.current) %> ago | Number of 'a':
+              <%= tweet.number_of_a %><br>
+              Title: <%= tweet.title %></p>
+            <%= tweet.text %>
+    </div>

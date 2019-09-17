@@ -58,14 +58,7 @@
 		</div>
 		<hr>
 		<h2>Your tweets</h2>
-		<% @user.tweets.each do |tweet| %>
-			<div class="boxed">
-            <p><strong><%= tweet.user.username %></strong> <%= distance_of_time_in_words(tweet.created_at, Time.current) %> ago | Number of 'a':
-              <%= tweet.number_of_a %><br>
-              Title: <%= tweet.title %></p>
-            <%= tweet.text %>
-        </div>
-		<% end %>
+		<%= render partial: 'users/tweet' , collection: @user.tweets %>
 	</div>
 
 <%else%>
@@ -76,14 +69,9 @@
 		     method: :post %>
 		</div>
 		<h2>Tweets</h2>
-		<% @user.tweets.each do |tweet| %>
-			<div class="boxed">
-            <p><strong><%= tweet.user.username %></strong> <%= distance_of_time_in_words(tweet.created_at, Time.current) %> ago | Number of 'a':
-              <%= tweet.number_of_a %><br>
-              Title: <%= tweet.title %></p>
-            <%= tweet.text %>
-        </div>
-		<% end %>
+		
+		<%= render partial: 'users/tweet' , collection: @user.tweets %>
+
 	<% else %>
 		<div class="tweet_link">
 		     <%= link_to 'Follow', follow_user_path,

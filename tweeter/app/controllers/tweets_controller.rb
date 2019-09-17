@@ -35,7 +35,7 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.user_id = current_user.id
-    #@tweet.token
+    @tweet.token
 
     mention
 
@@ -58,7 +58,7 @@ class TweetsController < ApplicationController
       user = User.find_by_username(tag)
       if user
         user.mentions += 1
-        user.save
+        user.save(validate: false)
       end
     end
   end
