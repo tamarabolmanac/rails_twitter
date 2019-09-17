@@ -1,15 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tweets</h1>
+<h1>News feed</h1>
  
     <% @tweets.each do |tweet| %>
 
       <% if (((Time.current - tweet.created_at).to_i.abs / 3600) / 24 ) <= 3  %>
           <div class="boxed">
-          <p><strong><%= tweet.user.username %></strong> <%= distance_of_time_in_words(tweet.created_at, Time.current) %> ago | Number of 'a':
-            <%= tweet.number_of_a %><br>
-            Title: <%= tweet.title %></p>
-          <%= tweet.text %>
+            <p><strong><%= tweet.user.username %></strong> <%= distance_of_time_in_words(tweet.created_at, Time.current) %> ago | Number of 'a':
+              <%= tweet.number_of_a %><br>
+              Title: <%= tweet.title %></p>
+            <%= tweet.text %>
       </div>
       <%else%>
       <%end%>

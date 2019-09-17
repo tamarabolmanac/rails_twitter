@@ -1,11 +1,13 @@
 <div class = "header">
-	
-	<% if current_user %>
-		<h3 class = "twitter"> Twitter </h3>
-     	<p class="user">
-			<%= link_to current_user.username, current_user %>
-		</p>
-	 <%else%>
-	 	<h3 class = "twitter"> Twitter </h3>
-	 <%end%>
+
+	<div class = "twitter"> 
+	 <ul>
+	  <li><%= link_to 'Search tweeter', users_path %> </li>
+	  <li><%= link_to 'News page', tweets_path %></li>
+	  <% if current_user %>
+	  	<li><%= link_to "My profile", current_user %></li>
+	  <%else%>
+	  <% end %>
+	</ul>
+</div>
 </div>

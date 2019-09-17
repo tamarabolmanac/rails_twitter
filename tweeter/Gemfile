@@ -16,6 +16,10 @@ gem 'sass-rails', '~> 5'
 
 gem "omniauth-twitter"
 
+gem 'has_secure_token'
+
+gem 'database_cleaner'
+
 gem 'sorcery'
 
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker

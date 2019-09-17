@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
 <div >
-<h1> <strong> <%= @user.username %></strong></h1>
-<%= link_to 'Search tweeter', users_path %> |
-<%= link_to 'News page', tweets_path %>
+<h1>User:  <strong> <%= @user.username %></strong></h1>
+<hr><br>
 <div>
 	<% if @user.id == current_user.id then %>
 		<h2>Your info </h2>
@@ -30,11 +29,24 @@
 	  <%= @user.email %>
 	</p>
 
-	<p>
-	  <strong>Mentioned:</strong>
-	  <%= @user.mentions %> times
-	</p>
-	
+	<table class="user_info">
+		<thead>
+		    <tr>
+		      <th>Followers</th>
+		      <th>Following</th>
+		      <th>Mentioned</th>
+		    </tr>
+		</thead>
+
+		<tbody>
+		    <tr>
+		       <td><%= @user.followers_number %></td>
+		       <td><%= @user.following_number %></td>
+		       <td><%= @user.mentions %></td>
+	      	</tr>
+	  	</tbody>
+	</table>
+
 	
 </div>
 
@@ -47,9 +59,12 @@
 		<hr>
 		<h2>Your tweets</h2>
 		<% @user.tweets.each do |tweet| %>
-			<p><strong><%= tweet.title %></strong></p>
-			<%= tweet.text %>
-			<hr>
+			<div class="boxed">
+            <p><strong><%= tweet.user.username %></strong> <%= distance_of_time_in_words(tweet.created_at, Time.current) %> ago | Number of 'a':
+              <%= tweet.number_of_a %><br>
+              Title: <%= tweet.title %></p>
+            <%= tweet.text %>
+        </div>
 		<% end %>
 	</div>
 
@@ -62,9 +77,12 @@
 		</div>
 		<h2>Tweets</h2>
 		<% @user.tweets.each do |tweet| %>
-			<p><strong><%= tweet.title %></strong></p>
-			<%= tweet.text %>
-			<hr>
+			<div class="boxed">
+            <p><strong><%= tweet.user.username %></strong> <%= distance_of_time_in_words(tweet.created_at, Time.current) %> ago | Number of 'a':
+              <%= tweet.number_of_a %><br>
+              Title: <%= tweet.title %></p>
+            <%= tweet.text %>
+        </div>
 		<% end %>
 	<% else %>
 		<div class="tweet_link">
@@ -74,8 +92,6 @@
 	<%end %>
 
 <%end%>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
 <br>
 </div>
 

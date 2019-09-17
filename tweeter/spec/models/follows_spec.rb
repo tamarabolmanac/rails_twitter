@@ -31,5 +31,7 @@ RSpec.describe Follow, type: :model do
 	    )
 
 	    expect(follow_relaton).not_to be_valid
-	  end
+	end
+
+
 end
