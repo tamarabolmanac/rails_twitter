@@ -56,7 +56,7 @@
 <%else%>
 
 	<% if is_following(current_user.id, @user.id) %>
-		<div>
+		<div class="tweet_link">
 		     <%= link_to 'Unfollow', unfollow_user_path,
 		     method: :post %>
 		</div>
@@ -67,7 +67,7 @@
 			<hr>
 		<% end %>
 	<% else %>
-		<div>
+		<div class="tweet_link">
 		     <%= link_to 'Follow', follow_user_path,
 		     method: :post %>
 		</div>

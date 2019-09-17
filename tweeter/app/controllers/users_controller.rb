@@ -1,6 +1,15 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  before_action :no_authenticated_user, only: [ :show, :index, :set_user]
+
+  def no_authenticated_user
+    unless current_user
+      redirect_to root_path
+      return false
+    end
+  end
+
 
   # GET /users
   # GET /users.json

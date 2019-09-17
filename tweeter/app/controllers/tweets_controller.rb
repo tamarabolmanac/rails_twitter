@@ -1,6 +1,15 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
 
+  before_action :no_authenticated_user, only: [:new, :create, :show, :index, :set_user]
+
+  def no_authenticated_user
+    unless current_user
+      redirect_to root_path
+      return false
+    end
+  end
+
   # GET /tweets
   # GET /tweets.json
   def index
@@ -42,7 +51,9 @@ class TweetsController < ApplicationController
 
   def mention
     tags = @tweet.text.split('#')
-    tags.each do |tag|
+    tags.each do |sequence|
+      to_whitespace = sequence.split(' ')
+      tag = to_whitespace.first
       user = User.find_by_username(tag)
       if user
         user.mentions += 1
